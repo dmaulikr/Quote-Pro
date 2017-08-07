@@ -13,17 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuoteView" customModule="Quote_Pro" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QuoteView" customModule="Quote_Pro" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="473" height="376"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e56-se-6sy">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="4:3" id="2Qj-dR-9aN"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="0.0" width="473" height="376"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBt-7G-308">
-                    <rect key="frame" x="20" y="88" width="360" height="124"/>
+                    <rect key="frame" x="20" y="113.5" width="433" height="149"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="YBt-7G-308" secondAttribute="height" multiplier="90:31" id="PSW-fQ-gAZ"/>
                     </constraints>
@@ -32,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AP-aC-myZ">
-                    <rect key="frame" x="20" y="220" width="360" height="24"/>
+                    <rect key="frame" x="11" y="255" width="451" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="4AP-aC-myZ" secondAttribute="height" multiplier="15:1" id="7RV-t3-8Fh"/>
                     </constraints>
@@ -43,16 +40,18 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.60000002379999995" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="YBt-7G-308" firstAttribute="centerX" secondItem="e56-se-6sy" secondAttribute="centerX" id="5t9-6p-qmz"/>
-                <constraint firstItem="4AP-aC-myZ" firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="6:5" id="I3O-9A-Cln"/>
-                <constraint firstItem="YBt-7G-308" firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="6:5" id="PBc-ae-jam"/>
+                <constraint firstItem="YBt-7G-308" firstAttribute="centerX" secondItem="e56-se-6sy" secondAttribute="centerX" priority="900" id="5t9-6p-qmz"/>
+                <constraint firstItem="4AP-aC-myZ" firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="6:5" priority="900" id="I3O-9A-Cln"/>
+                <constraint firstItem="YBt-7G-308" firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="6:5" priority="900" id="PBc-ae-jam"/>
                 <constraint firstItem="e56-se-6sy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QiG-L0-8As"/>
-                <constraint firstItem="YBt-7G-308" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" id="XtC-hG-6nf"/>
+                <constraint firstItem="YBt-7G-308" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" priority="900" id="XtC-hG-6nf"/>
                 <constraint firstAttribute="trailing" secondItem="e56-se-6sy" secondAttribute="trailing" id="aI6-Nf-ocp"/>
+                <constraint firstItem="YBt-7G-308" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="hR4-kY-Rh4"/>
                 <constraint firstAttribute="bottom" secondItem="e56-se-6sy" secondAttribute="bottom" id="iEq-92-OWI"/>
-                <constraint firstItem="4AP-aC-myZ" firstAttribute="centerX" secondItem="e56-se-6sy" secondAttribute="centerX" id="nZn-tL-4Nd"/>
-                <constraint firstItem="4AP-aC-myZ" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" constant="82" id="pyU-p0-YxT"/>
+                <constraint firstItem="4AP-aC-myZ" firstAttribute="centerX" secondItem="e56-se-6sy" secondAttribute="centerX" priority="900" id="nZn-tL-4Nd"/>
+                <constraint firstItem="4AP-aC-myZ" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" priority="900" constant="82" id="pyU-p0-YxT"/>
                 <constraint firstItem="e56-se-6sy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xaB-FT-PQd"/>
+                <constraint firstAttribute="trailing" secondItem="YBt-7G-308" secondAttribute="trailing" constant="20" id="yQR-ap-rRd"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -63,7 +62,7 @@
                 <outlet property="imageView" destination="e56-se-6sy" id="D35-HJ-qD3"/>
                 <outlet property="quoteLabel" destination="YBt-7G-308" id="qeT-CC-Prr"/>
             </connections>
-            <point key="canvasLocation" x="2048" y="1033"/>
+            <point key="canvasLocation" x="2208.5" y="985"/>
         </view>
     </objects>
 </document>

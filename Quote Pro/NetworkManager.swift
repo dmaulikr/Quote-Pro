@@ -16,9 +16,9 @@ class NetworkManager: NSObject {
   static let sharedManager = NetworkManager()
   
   var quoteComponents = URLComponents(string: "https://api.forismatic.com")
-  var imageComponents = URLComponents(string: "http://lorempixel.com/")
+  var imageComponents = URLComponents(string: "https://lorempixel.com/")
   
-  func getQuote(language:String, completionHandler: @escaping () -> Void)
+  func getQuote(language:String, completionHandler: @escaping (_ quoteLabel:String, _ authorLabel:String) -> Void)
   {
     let methodQuery = URLQueryItem(name: "method", value: "getQuote")
     let formatQuery = URLQueryItem(name: "format", value: "json")
@@ -34,14 +34,24 @@ class NetworkManager: NSObject {
     
     performQuery(urlRequest: urlRequest) { (anyData) in
       let jsonData = anyData as! [String: AnyObject]
+      let quoteLabel = jsonData["quoteText"] as! String
+      let authorLabel = jsonData["quoteAuthor"] as! String
       
-      print(jsonData.description)
+      completionHandler(quoteLabel, authorLabel)
     }
   }
   
-  func getImage(width:Int, height:Int, category:String, completionHandler: @escaping () -> Void)
+  func getImage(width:Int, height:Int, category:String, completionHandler: @escaping (Data) -> Void)
   {
-    imageComponents?.path = String(format:"/%li/%li/%@", width, height, category)
+    imageComponents?.path = String(format:"/%li/%li/%@/", width, height, category)
+    
+    do {
+      let imageData = try Data.init(contentsOf: imageComponents!.url!)
+      completionHandler(imageData)
+    } catch {
+      print(error.localizedDescription)
+    }
+    
   }
   
   func performQuery(urlRequest:URLRequest, completionHandler:@escaping (Any) -> Void)

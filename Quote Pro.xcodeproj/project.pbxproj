@@ -20,6 +20,7 @@
 		D19D88E21F33B48B000ECBA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D19D88E01F33B48B000ECBA0 /* Main.storyboard */; };
 		D19D88E41F33B48B000ECBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D19D88E31F33B48B000ECBA0 /* Assets.xcassets */; };
 		D19D88E71F33B48B000ECBA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D19D88E51F33B48B000ECBA0 /* LaunchScreen.storyboard */; };
+		D1F01BCD1F38E4EE00B4F10A /* QPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F01BCC1F38E4EE00B4F10A /* QPTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D19D88E31F33B48B000ECBA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D19D88E61F33B48B000ECBA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D19D88E81F33B48B000ECBA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1F01BCC1F38E4EE00B4F10A /* QPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			children = (
 				D19D88DC1F33B48B000ECBA0 /* AppDelegate.swift */,
 				D14CE5E51F33F7BC00D2DD30 /* QPTableViewController.swift */,
+				D1F01BCC1F38E4EE00B4F10A /* QPTableViewCell.swift */,
 				D14CE5E11F33F79100D2DD30 /* QPAddViewController.swift */,
 				D14CE5E31F33F79D00D2DD30 /* QPDetailViewController.swift */,
 				D14CE5E91F3400D400D2DD30 /* NetworkManager.swift */,
@@ -238,6 +241,7 @@
 				D19D88DD1F33B48B000ECBA0 /* AppDelegate.swift in Sources */,
 				D14CE5EC1F3406DF00D2DD30 /* QuoteView.swift in Sources */,
 				D14CE5E21F33F79100D2DD30 /* QPAddViewController.swift in Sources */,
+				D1F01BCD1F38E4EE00B4F10A /* QPTableViewCell.swift in Sources */,
 				D14CE5EA1F3400D400D2DD30 /* NetworkManager.swift in Sources */,
 				D14CE5F01F3409AB00D2DD30 /* Quote.swift in Sources */,
 				D14CE5E61F33F7BC00D2DD30 /* QPTableViewController.swift in Sources */,
