@@ -6,6 +6,7 @@ target 'Quote Pro' do
   use_frameworks!
   pod 'RealmSwift'
   pod 'AFNetworking', '~> 3.0'
+  pod 'IQKeyboardManager'
 
   # Pods for Quote Pro
 

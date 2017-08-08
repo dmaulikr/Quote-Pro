@@ -14,4 +14,7 @@ class Quote: Object {
   dynamic var author = ""
   dynamic var quote = ""
   dynamic var photo: Photo?
+  
+  
 }
+

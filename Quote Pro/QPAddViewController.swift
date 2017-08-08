@@ -196,8 +196,8 @@ class QPAddViewController: UIViewController {
     loadedNib.translatesAutoresizingMaskIntoConstraints = false
     loadedNib.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     loadedNib.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    loadedNib.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    viewHeightConstraint = loadedNib.heightAnchor.constraint(equalToConstant: view.frame.height/2)
+    loadedNib.topAnchor.constraint(equalTo: view.topAnchor, constant: self.navigationController!.navigationBar.frame.height).isActive = true
+    viewHeightConstraint = loadedNib.heightAnchor.constraint(equalToConstant: view.frame.height/5*2)
     viewHeightConstraint.isActive = true
     
   }

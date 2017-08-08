@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     
     
-    setDefaultRealmForUser(username: "errol")
+//    setDefaultRealmForUser(username: "errol")
+    IQKeyboardManager.shared().isEnabled = true
     return true
   }
   

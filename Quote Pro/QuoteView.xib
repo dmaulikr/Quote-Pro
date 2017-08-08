@@ -20,18 +20,18 @@
                     <rect key="frame" x="0.0" y="0.0" width="473" height="376"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBt-7G-308">
-                    <rect key="frame" x="20" y="113.5" width="433" height="149"/>
+                    <rect key="frame" x="20" y="72" width="433" height="182"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="YBt-7G-308" secondAttribute="height" multiplier="90:31" id="PSW-fQ-gAZ"/>
+                        <constraint firstAttribute="width" secondItem="YBt-7G-308" secondAttribute="height" multiplier="90:31" constant="-95.387096774193537" id="PSW-fQ-gAZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AP-aC-myZ">
-                    <rect key="frame" x="11" y="255" width="451" height="30"/>
+                    <rect key="frame" x="11" y="262" width="451" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="4AP-aC-myZ" secondAttribute="height" multiplier="15:1" id="7RV-t3-8Fh"/>
+                        <constraint firstAttribute="width" secondItem="4AP-aC-myZ" secondAttribute="height" multiplier="15:1" constant="1" id="7RV-t3-8Fh"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
@@ -42,14 +42,14 @@
             <constraints>
                 <constraint firstItem="YBt-7G-308" firstAttribute="centerX" secondItem="e56-se-6sy" secondAttribute="centerX" priority="900" id="5t9-6p-qmz"/>
                 <constraint firstItem="4AP-aC-myZ" firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="6:5" priority="900" id="I3O-9A-Cln"/>
-                <constraint firstItem="YBt-7G-308" firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="6:5" priority="900" id="PBc-ae-jam"/>
+                <constraint firstItem="YBt-7G-308" firstAttribute="width" secondItem="e56-se-6sy" secondAttribute="height" multiplier="6:5" priority="900" constant="-18.199999999999989" id="PBc-ae-jam"/>
                 <constraint firstItem="e56-se-6sy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QiG-L0-8As"/>
-                <constraint firstItem="YBt-7G-308" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" priority="900" id="XtC-hG-6nf"/>
+                <constraint firstItem="YBt-7G-308" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" priority="900" constant="-25" id="XtC-hG-6nf"/>
                 <constraint firstAttribute="trailing" secondItem="e56-se-6sy" secondAttribute="trailing" id="aI6-Nf-ocp"/>
                 <constraint firstItem="YBt-7G-308" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="hR4-kY-Rh4"/>
                 <constraint firstAttribute="bottom" secondItem="e56-se-6sy" secondAttribute="bottom" id="iEq-92-OWI"/>
                 <constraint firstItem="4AP-aC-myZ" firstAttribute="centerX" secondItem="e56-se-6sy" secondAttribute="centerX" priority="900" id="nZn-tL-4Nd"/>
-                <constraint firstItem="4AP-aC-myZ" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" priority="900" constant="82" id="pyU-p0-YxT"/>
+                <constraint firstItem="4AP-aC-myZ" firstAttribute="centerY" secondItem="e56-se-6sy" secondAttribute="centerY" priority="900" constant="89" id="pyU-p0-YxT"/>
                 <constraint firstItem="e56-se-6sy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xaB-FT-PQd"/>
                 <constraint firstAttribute="trailing" secondItem="YBt-7G-308" secondAttribute="trailing" constant="20" id="yQR-ap-rRd"/>
             </constraints>

@@ -13,7 +13,7 @@ class QPTableViewController: UITableViewController {
   
   let realm = try! Realm()
   var listOfQuotes: Results<Quote>!
-  
+  var notificationToken: NotificationToken?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,31 +23,47 @@ class QPTableViewController: UITableViewController {
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.leftBarButtonItem = self.editButtonItem
+    listOfQuotes = realm.objects(Quote.self)
     
-    tableView.reloadData()
+    notificationToken = listOfQuotes.addNotificationBlock({ [weak self] (changes: RealmCollectionChange) in
+      guard let tableView = self?.tableView else { return }
+      switch changes {
+      case .initial:
+        tableView.reloadData()
+        break
+      case .update(_, let deletions, let insertions, let modifications):
+        // Query results have changed, so apply them to the UITableView
+        tableView.beginUpdates()
+        tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                             with: .automatic)
+        tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                             with: .automatic)
+        tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                             with: .automatic)
+        tableView.endUpdates()
+        break
+      case .error(let error):
+        fatalError("\(error)")
+        break
+      }
+    })
   }
   
   // MARK: - Table view data source
-  
-  override func numberOfSections(in tableView: UITableView) -> Int {
-    // #warning Incomplete implementation, return the number of sections
-    //    return listOfQuotes.count
-    return 5
-  }
-  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-    return 1
+    return listOfQuotes.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "quoteCell", for: indexPath) as! QPTableViewCell
     
     // Configure the cell...
-    //    cell.quote = listOfQuotes.first
+    cell.quote = listOfQuotes[indexPath.row]
     
     return cell
   }
+  
   
   
   // MARK: Segue Methods
@@ -58,10 +74,11 @@ class QPTableViewController: UITableViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?)
   {
-    if (segue.description == "detailSegue")
+    if (segue.identifier == "detailSegue")
     {
+      let indexPath = sender as! IndexPath
       let dvc = segue.destination as! QPDetailViewController
-      print(dvc.description)
+      dvc.quote = listOfQuotes[indexPath.row]
     }
   }
   
@@ -77,7 +94,11 @@ class QPTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       // Delete the row from the data source
-      tableView.deleteRows(at: [indexPath], with: .fade)
+      
+//      tableView.deleteRows(at: [indexPath], with: .fade)
+      try! realm.write {
+        realm.delete(listOfQuotes[indexPath.row])
+      }
     } else if editingStyle == .insert {
       // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
