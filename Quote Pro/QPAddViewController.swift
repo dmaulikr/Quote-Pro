@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import RealmSwift
+
+protocol AddQuoteDelegate: class {
+  
+  func addNewQuote(quote:Quote)
+  
+}
 
 class QPAddViewController: UIViewController {
   
-  @IBOutlet weak var nibView: QuoteView!
+  var nibView: QuoteView!
   @IBOutlet weak var imageSearchTerm: UITextField!
+  @IBOutlet weak var languageButton: UIButton!
   
+  @IBOutlet weak var redSlider: UISlider!
+  @IBOutlet weak var greenSlider: UISlider!
+  @IBOutlet weak var blueSlider: UISlider!
+  
+  
+  let realm = try! Realm()
   var loadedNib: QuoteView!
   var viewHeightConstraint: NSLayoutConstraint!
   var isEnglish = true
+  var quoteLabelOriginalCenter: CGPoint!
+  var authorLabelOriginalCenter: CGPoint!
+  weak var delegate: AddQuoteDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,7 +42,77 @@ class QPAddViewController: UIViewController {
     generateNewImage()
     generateNewQuote()
     
+    loadedNib.imageView.isUserInteractionEnabled = true
+    let quotePanGesture = UIPanGestureRecognizer.init(target: self, action: #selector(handleQuotePan(sender:)))
+    loadedNib.quoteLabel.addGestureRecognizer(quotePanGesture)
+    loadedNib.quoteLabel.isUserInteractionEnabled = true
+    
+    let authorPanGesture = UIPanGestureRecognizer.init(target: self, action: #selector(handleAuthorPan(sender:)))
+    loadedNib.authorLabel.addGestureRecognizer(authorPanGesture)
+    loadedNib.authorLabel.isUserInteractionEnabled = true
   }
+  
+  
+  override func viewDidLayoutSubviews()
+  {
+    quoteLabelOriginalCenter = loadedNib.quoteLabel.center
+    authorLabelOriginalCenter = loadedNib.authorLabel.center
+  }
+  
+  // MARK: Gesture Methods
+  func handleQuotePan(sender:UIPanGestureRecognizer)
+  {
+    switch (sender.state)
+    {
+    case .began:
+      loadedNib.quoteLabel.center = sender.location(in: loadedNib.imageView)
+      break
+    case .changed:
+      loadedNib.quoteLabel.center = sender.location(in: loadedNib.imageView)
+      break
+    case .ended:
+      loadedNib.quoteLabel.center = sender.location(in: loadedNib.imageView)
+      if (!loadedNib.imageView.bounds.contains(loadedNib.quoteLabel.center))
+      {
+        loadedNib.quoteLabel.center = quoteLabelOriginalCenter
+      }
+      break
+    default:
+      if (!loadedNib.imageView.bounds.contains(loadedNib.quoteLabel.center))
+      {
+        loadedNib.quoteLabel.center = quoteLabelOriginalCenter
+      }
+      break
+    }
+  }
+  
+  func handleAuthorPan(sender:UIPanGestureRecognizer)
+  {
+    switch (sender.state)
+    {
+    case .began:
+      loadedNib.authorLabel.center = sender.location(in: loadedNib.imageView)
+      break
+    case .changed:
+      loadedNib.authorLabel.center = sender.location(in: loadedNib.imageView)
+      break
+    case .ended:
+      loadedNib.authorLabel.center = sender.location(in: loadedNib.imageView)
+      if (!loadedNib.imageView.bounds.contains(loadedNib.authorLabel.center))
+      {
+        loadedNib.authorLabel.center = authorLabelOriginalCenter
+      }
+      break
+    default:
+      if (!loadedNib.imageView.bounds.contains(loadedNib.authorLabel.center))
+      {
+        loadedNib.authorLabel.center = authorLabelOriginalCenter
+      }
+      break
+    }
+    
+  }
+  
   // MARK: Button Methods
   
   @IBAction func cancelButton(_ sender: UIBarButtonItem)
@@ -34,6 +121,19 @@ class QPAddViewController: UIViewController {
   }
   @IBAction func saveButton(_ sender: UIBarButtonItem)
   {
+    let quote = Quote()
+    quote.author = loadedNib.authorLabel.text!
+    quote.quote = loadedNib.quoteLabel.text!
+    let photo = Photo()
+    photo.image = UIImageJPEGRepresentation(loadedNib.imageView.image!, 1.0)!
+    quote.photo = photo
+    photo.quote = quote
+  
+    try! realm.write {
+      realm.add(photo)
+      realm.add(quote)
+    }
+    
     dismiss(animated: true)
   }
   
@@ -50,6 +150,8 @@ class QPAddViewController: UIViewController {
   @IBAction func languageButton(_ sender: UIButton)
   {
     isEnglish = !isEnglish
+    let title = isEnglish ? "English" : "Russian"
+    sender.setTitle(title, for: UIControlState.normal)
     generateNewQuote()
   }
   
@@ -63,14 +165,31 @@ class QPAddViewController: UIViewController {
     generateNewImage()
   }
   
+  @IBAction func categoryInfoButton(_ sender: UIButton) {
+    let categories = "abstract\nanimals\nbusiness\ncats\ncity\nfood\nnightlife\nfashion\npeople\nnature\nsports\ntechnics\ntransport"
+    let alert = UIAlertController.init(title: "Category Info", message: categories, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction.init(title: "Done", style: UIAlertActionStyle.default, handler: { (alert) in
+    }))
+    present(alert, animated: true)
+  }
+  
+  @IBAction func changeFontColor(_ sender: UISlider)
+  {
+    redSlider.value = roundf(redSlider.value)
+    greenSlider.value = roundf(greenSlider.value)
+    blueSlider.value = roundf(blueSlider.value)
+    loadedNib.quoteLabel.textColor = UIColor(red: CGFloat(redSlider.value/255.0), green: CGFloat(greenSlider.value/255.0), blue: CGFloat(blueSlider.value/255.0), alpha: 1.0)
+    loadedNib.authorLabel.textColor = UIColor(red: CGFloat(redSlider.value/255.0), green: CGFloat(greenSlider.value/255.0), blue: CGFloat(blueSlider.value/255.0), alpha: 1.0)
+  }
+  
   
   func addQuoteView()
   {
     loadedNib = Bundle.main.loadNibNamed("QuoteView", owner: nil)?.first as! QuoteView
     loadedNib.authorLabel.text = "Author"
-//    loadedNib.authorLabel.adjustsFontSizeToFitWidth = true
+    loadedNib.authorLabel.textColor = UIColor.white
     loadedNib.quoteLabel.text = "Quote"
-//    loadedNib.quoteLabel.adjustsFontSizeToFitWidth = true
+    loadedNib.quoteLabel.textColor = UIColor.white
     loadedNib.imageView.image = UIImage.init(named: "image")
     view.addSubview(loadedNib)
     
@@ -95,9 +214,10 @@ class QPAddViewController: UIViewController {
   
   func generateNewQuote()
   {
-    let language = isEnglish ? "en" : "fr"
+    let language = isEnglish ? "en" : "ru"
+    
     NetworkManager.sharedManager.getQuote(language: language) { (quote, author) in
-      OperationQueue.main.addOperation({ 
+      OperationQueue.main.addOperation({
         self.loadedNib.quoteLabel.text = quote
         self.loadedNib.authorLabel.text = author
       })

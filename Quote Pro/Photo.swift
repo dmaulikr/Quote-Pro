@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Realm
+import RealmSwift
 
-class Photo: RLMObject {
+class Photo: Object {
   
   dynamic var image = Data()
   dynamic var quote: Quote?

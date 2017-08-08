@@ -10,5 +10,14 @@ import UIKit
 
 class QPTableViewCell: UITableViewCell {
 
+  @IBOutlet weak var authorLabel: UILabel!
+  @IBOutlet weak var quoteLabel: UILabel!
+  
+   var quote: Quote! {
+    didSet{
+      authorLabel.text = quote.author
+      quoteLabel.text = quote.quote
+    }
+  }
 
 }

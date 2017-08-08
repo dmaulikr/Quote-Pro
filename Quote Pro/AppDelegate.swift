@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    
+    setDefaultRealmForUser(username: "errol")
     return true
+  }
+  
+  func setDefaultRealmForUser(username:String) -> Void {
+    var config = Realm.Configuration()
+  
+    config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("\(username).realm")
+    
+    Realm.Configuration.defaultConfiguration = config
   }
 
   func applicationWillResignActive(_ application: UIApplication) {

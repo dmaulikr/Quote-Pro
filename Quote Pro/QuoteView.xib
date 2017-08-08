@@ -24,7 +24,7 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="YBt-7G-308" secondAttribute="height" multiplier="90:31" id="PSW-fQ-gAZ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
